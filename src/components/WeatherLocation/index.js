@@ -5,7 +5,7 @@ import {CLOUD, CLOUDY, SUN, RAIN, SNOW, WINDY} from '../../constant/weathers';
 
 const api_key = '5fb190f71d8c25c51105325c05987710';
 const location = 'Buenos Aires, AR';
-const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
+const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}&units=metric`;
 
 const data1 = {
     temperature: 12,
