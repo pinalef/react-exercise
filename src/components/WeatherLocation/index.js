@@ -40,6 +40,22 @@ class WeatherLocation extends Component {
             data: data1
         }
     }
+    getWeatherState = (weather) => {
+        return SUN;
+    }
+
+    getData = (weather_data) => {
+        const {humidity, temp} =  weather_data.main;
+        const {speed} = weather_data.wind;
+        const weatherState = this.getWeatherState(this.weather);
+        const data = {
+            humidity,
+            temperature: temp,
+            weatherState,
+            wind: `${speed} m/s`,
+        }
+        return data;
+    }
     handleUpdateClick = () => {
         /* this.setState({
             city: 'Santiago',
@@ -49,6 +65,10 @@ class WeatherLocation extends Component {
         .then(data => {
             console.log(data);
             return data.json();
+        })
+        .then(weather_data => {
+            const data = this.getData(weather_data);
+            this.setState({ data });
         })
         console.log('Actualizado')
     }
