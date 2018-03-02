@@ -3,19 +3,23 @@ import Location from './Location';
 import WeatherData from './WeatherData';
 import {CLOUD, CLOUDY, SUN, RAIN, SNOW, WINDY} from '../../constant/weathers';
 
+const api_key = '5fb190f71d8c25c51105325c05987710';
+const location = 'Buenos Aires, AR';
+const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
+
 const data1 = {
     temperature: 12,
     weatherState: RAIN,
     humidity: 59,
     wind: '10 m/s',
 }
-
+/*
 const data2 = {
     temperature: -1,
     weatherState: SNOW,
     humidity: 89,
     wind: '70 m/s',
-}
+}*/
 
 /*
 const WeatherLocation = () => (
@@ -37,9 +41,14 @@ class WeatherLocation extends Component {
         }
     }
     handleUpdateClick = () => {
-        this.setState({
+        /* this.setState({
             city: 'Santiago',
             data: data2
+        })*/
+        fetch(api_weather)
+        .then(data => {
+            console.log(data);
+            return data.json();
         })
         console.log('Actualizado')
     }
