@@ -10,10 +10,7 @@ const strToComponent = (cities) => (
 
 const LocationList = ({cities}) => (
     <div>
-        <WeatherLocation city = {'Santiago, SCL'} />
-        <WeatherLocation city = {'Bogotá, COL'} />
-        <WeatherLocation city = {'Rio de Janeiro, BR'} />
-        <WeatherLocation city = {'Buenos Aires, AR'}/>
+        {strToComponent(cities)}
     </div>
 )
 
