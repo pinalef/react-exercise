@@ -4,7 +4,7 @@ import WeatherLocation from './WeatherLocation';
 
 const strToComponent = (cities) => (
     cities.map(city => (
-        <WeatherLocation city = {city} />
+        <WeatherLocation key = {city} city = {city} />
     ))
 )
 
