@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CircularProgress from 'material-ui/CircularProgress';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import transformWeather from '../../services/transformWeather';
-import {CLOUD, CLOUDY, SUN, RAIN, SNOW, WINDY} from '../../constant/weathers';
 
 const api_key = '5fb190f71d8c25c51105325c05987710';
-const location = 'Santiago, CL';
-const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}&units=metric`;
+// const city = 'Santiago, CL';
+const url = 'http://api.openweathermap.org/data/2.5/weather';
+
 /*
 const data1 = {
 	temperature: 12,
@@ -32,23 +33,27 @@ const WeatherLocation = () => (
 )*/
 
 class WeatherLocation extends Component {
-	constructor () {
+	constructor ({city}) {
 		// invoca métodos existenes de un padre (data1, data2)
 		super();
 		// toma el estado del componente en ese punto de tiempo
 		// set.state los puede setear y entregarle datos nuevos
 		this.state = {
-			city: 'Santiago',
+			city,
 			data: null
 		}
 		console.log('Constructor');
 	}
 
-	handleUpdateClick = () => {
 		/* this.setState({
 			city: 'Santiago',
 			data: data2
-		}) */
+    }) */
+
+	componentWillMount() {
+    // console.log('ComponentWillMount');
+    const { city } = this.state;
+    const api_weather = `${url}?q=${city}&appid=${api_key}&units=metric`;
 		fetch(api_weather)
 		.then(data => {
 			console.log(data);
@@ -58,12 +63,6 @@ class WeatherLocation extends Component {
 			const data = transformWeather(weather_data);
 			this.setState({ data });
 		})
-		console.log('Actualizado')
-	}
-
-	componentWillMount() {
-		this.handleUpdateClick();
-		// console.log('ComponentWillMount');
 	}
 	/* componentDidMount() {
 		console.log('ComponentDidMount');
@@ -84,6 +83,10 @@ class WeatherLocation extends Component {
 			</div>
 		) 
 	}
+}
+
+WeatherLocation.propTypes = {
+  city: PropTypes.string,
 }
 
 export default WeatherLocation;
