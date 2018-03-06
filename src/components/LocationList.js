@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
 
 const LocationList = ({cities, onSelectedLocation}) => {
-    const handlerWeatherLocationList = (city) => {
+    const handlerWeatherLocationClick = (city) => {
         console.log('handleWeatherLocationClick');
         onSelectedLocation(city);
     }
@@ -13,7 +13,7 @@ const LocationList = ({cities, onSelectedLocation}) => {
                 key = {city} 
                 city = {city}
                 onWeatherLocationClick = {
-                    () => handlerWeatherLocationList(city)
+                    () => handlerWeatherLocationClick(city)
                 }
             />
         ))
