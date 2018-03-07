@@ -17,11 +17,20 @@ const cities = [
 ];
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      city: null // si no queremos una ciudad en particular
+    }
+  }
+
   handleSelectionLocation = (city) => {
+    this.setState({city});
     console.log(`handleSelectionLocation ${city}`);
     // onSelectedLocation(city);
   }
   render() {
+    const { city } = this.state;
     return (
       <MuiThemeProvider>
         <Grid>
@@ -39,9 +48,9 @@ class App extends Component {
             <Col xs={12} md={6}>
               <Paper zDepth={4}>
                 <div className="detail">
-                <ForecastExtended city = {'Buenos Aires, AR'}>
-
-                </ForecastExtended>
+                {
+                  city === null ? <h2 className='forecastTitle'>No se ha seleccionado ciudad</h2> : <ForecastExtended city = {city}></ForecastExtended>
+                }
                 </div>
               </Paper>
             </Col>
