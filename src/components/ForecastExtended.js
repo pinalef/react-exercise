@@ -14,16 +14,27 @@ import ForecastItem from './ForecastItem';
 }
 
 class ForecastExtended extends Component {
-    renderForecastItemDays() {
-        return days.map(day => (<ForecastItem key={day} weekDay={day} hour = {10} data = {data}> </ForecastItem>))
-            // <ForecastItem weekDay={'Miércoles'}> </ForecastItem>
+    constructor() {
+        super();
+        this.state = {
+            forecastData: null
+        }
     }
-
+    renderForecastItemDays() {
+        return 'render items';
+        /*return days.map(day => (<ForecastItem key={day} weekDay={day} hour = {10} data = {data}> </ForecastItem>))
+            // <ForecastItem weekDay={'Miércoles'}> </ForecastItem>*/
+    }
+    renderProgress = () => {
+        return (<h3>Cargando pronóstico extendido... </h3>)
+    }
     render() {
         const { city } = this.props;
+        const { forecastData } = this.state;
         return (
             <div>
                 <h2 className='forecastTitle'>Pronóstico entendido para {city} </h2>
+                {forecastData !== null ? this.renderForecastItemDays() :this.renderProgress()}
             </div>
         )
     }
