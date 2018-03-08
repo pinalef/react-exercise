@@ -16,7 +16,7 @@ ForecastItem.propTypes = {
         temperature: PropTypes.number.isRequired,
         humidity: PropTypes.isRequired,
         weatherState: PropTypes.string.isRequired,
-        wind: PropTypes.number.isRequired,
+        wind: PropTypes.string.isRequired,
     })
 }
 
