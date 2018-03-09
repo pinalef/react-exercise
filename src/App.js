@@ -40,8 +40,10 @@ class App extends Component {
     const action = {
       type: 'setCity',
       value: city,
-    } */
-    store.dispatch(setCity(city));
+    } */ 
+    // ahora dispatch está abajo
+    // store.dispatch(setCity(city));
+    this.props.setCity(city)
   }
   render() {
     const { city } = this.state;
@@ -82,9 +84,11 @@ class App extends Component {
     );
   }
 }
+// esta función nos deja trabajar con las acciones
+const mapDispatchToPropsActions = (dispatch) => ({
+  setCity: value => dispatch(setCity(value))
+});
 
-const mapDispatchToPropsActions = () => {};
+const AppConnected = connect(null, mapDispatchToPropsActions)(App)
 
-const AppConnected = connect(null, mapDispatchToPropsActions)
-
-export default App;
+export default AppConnected;
