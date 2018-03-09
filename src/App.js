@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createStore } from 'redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
@@ -16,6 +17,9 @@ const cities = [
   'Rio de Janeiro, BR'
 ];
 
+// función crea un objeto vacío - esta es una función pura
+const store = createStore(() => {});
+
 class App extends Component {
   constructor() {
     super();
@@ -27,7 +31,12 @@ class App extends Component {
   handleSelectionLocation = (city) => {
     this.setState({city});
     console.log(`handleSelectionLocation ${city}`);
-    // onSelectedLocation(city);
+    
+    const action = {
+      type: 'setCity',
+      value: 'city',
+    }
+    store.dispatch(action);
   }
   render() {
     const { city } = this.state;
