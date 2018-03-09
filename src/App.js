@@ -18,7 +18,8 @@ const cities = [
 ];
 
 // función crea un objeto vacío - esta es una función pura
-const store = createStore(() => {});
+const store = createStore(() => {},
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 class App extends Component {
   constructor() {
