@@ -20,6 +20,13 @@ const cities = [
 // función crea un objeto vacío - esta es una función pura
 const store = createStore(() => {},
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+// actionCreator
+const setCity = (value) => (
+  {
+    type: 'setCity',
+    value
+  }
+)
 
 class App extends Component {
   constructor() {
@@ -32,12 +39,12 @@ class App extends Component {
   handleSelectionLocation = (city) => {
     this.setState({city});
     console.log(`handleSelectionLocation ${city}`);
-    
+    /*
     const action = {
       type: 'setCity',
       value: city,
-    }
-    store.dispatch(action);
+    } */
+    store.dispatch(setCity(city));
   }
   render() {
     const { city } = this.state;
