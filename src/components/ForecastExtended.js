@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import ForecastItem from './ForecastItem';
 import transformForecast from './../services/transformForecast';
 
- const days = [
+ /* const days = [
      'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
- ];
+ ]; */
 
  const data = {
     temperature: 10,
@@ -26,7 +26,19 @@ class ForecastExtended extends Component {
         }
     }
     componentDidMount() {
-        const url_forecast = `${url}?q=${this.props.city}&appid=${api_key}&units=metric`;
+        this.updateCity(this.props.city);
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.city !== this.props.city) {
+            // simulando carga de datos 
+            this.setState({
+                forecastData: null
+            })
+            this.updateCity(nextProps.city);
+        }
+    }
+    updateCity = (city) => {
+        const url_forecast = `${url}?q=${city}&appid=${api_key}&units=metric`;
         fetch(url_forecast).then(data => (data.json())
         ).then(weather_data => {
             console.log(weather_data);
