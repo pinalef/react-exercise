@@ -35,7 +35,7 @@ class App extends Component {
     
     const action = {
       type: 'setCity',
-      value: 'city',
+      value: city,
     }
     store.dispatch(action);
   }
