@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
+import { connect } from 'react-redux';
+// import { createStore } from 'redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
+// import { store } from '/.store';
+import { setCity } from './actions';
 import './App.css';
 
 const cities = [
@@ -16,17 +19,11 @@ const cities = [
   'Madrid, ES',
   'Rio de Janeiro, BR'
 ];
-
+/*
 // función crea un objeto vacío - esta es una función pura
 const store = createStore(() => {},
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-// actionCreator
-const setCity = (value) => (
-  {
-    type: 'setCity',
-    value
-  }
-)
+*/
 
 class App extends Component {
   constructor() {
@@ -85,5 +82,9 @@ class App extends Component {
     );
   }
 }
+
+const mapDispatchToPropsActions = () => {};
+
+const AppConnected = connect(null, mapDispatchToPropsActions)
 
 export default App;
